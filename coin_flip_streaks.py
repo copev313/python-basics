@@ -49,7 +49,7 @@ def streak_tracker(flips_list=[], streak_of=3):
         that displays how many of each type of streak occurred.
     """
     STREAKS = {'HEADS': 0, 'TAILS': 0}      # Keep a dictionary to track counts.
-    HEAD_STREAKS, TAIL_STREAKS = (0, 0)       # Keep track of the type of streak and how many.
+    HEAD_STREAKS, TAIL_STREAKS = (0, 0)     # Keep track of the type of streak and how many.
     
     if (flips_list != []):          # CASE: Nonempty list
         previous = None
@@ -69,14 +69,13 @@ def streak_tracker(flips_list=[], streak_of=3):
                 elif (current=='T'):
                     STREAKS['TAILS'] += 1
             # CASE: Different than previous value
-            else:
+            elif (current!=previous):
                 if (current=='H'):
                     STREAKS['HEADS'] = 1
                 elif (current=='T'):
                     STREAKS['TAILS'] = 1
                     
-            previous = flips_list[i-1]             # Store current as previous for next iteration
-                
+            previous = flips_list[i]             # Store current as previous for next iteration
         return {'HEAD STREAKS': HEAD_STREAKS, 'TAIL STREAKS': TAIL_STREAKS}
     
     else:                           # CASE: Empty list
@@ -86,7 +85,7 @@ def streak_tracker(flips_list=[], streak_of=3):
 
 # TESTS COMMENTED BELOW:
 '''
-coin_flip_results = coin_flips(10000)
+coin_flip_results = coin_flips(1000)
 print(' '.join(coin_flip_results))
 
 sample = [ 'H', 'H', 'T', 'H', 'T', 'H', 'H', 'T', 'H', 'H', 'T', 'T', 'T', 'H', 'H', 'T', 'T', 'T', 'H', 'T', 'H', 'T', 'H', 'H', 'T', 
