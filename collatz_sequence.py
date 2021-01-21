@@ -9,15 +9,15 @@ def collatz(num):
     Parameters
     ----------
     num : int
-        The integer to run through the sequence.
+        The integer that starts the sequence.
     """
     if (num == 1):                      # CASE: '1' -- end recursion
         print("Sequence Complete!")
         
     else:                               # CASE: not '1'
-        if (num % 2 == 0):              ## CASE: Even -- print and return num // 2
+        if (num % 2 == 0):      ## CASE: EVEN -- print and return (num // 2)
             new_num = num // 2
-        else:                           ## CASE: Odd -- print and return 3 * number +1
+        else:                   ## CASE: ODD -- print and return (3 * number +1)
             new_num = 3 * num + 1
         
         print(new_num)
@@ -25,7 +25,7 @@ def collatz(num):
 
 
 
-def runner():
+def netrunner():
     """
     Driver code of the program.
     """
@@ -36,8 +36,11 @@ def runner():
         
     except ValueError:
         print("Value Error! -- Please enter a positive or negative whole number.")
-        runner()
+        netrunner()
+        
+    except RecursionError:
+        print("ZERO (booooo!)\nPlease enter a positive or negative whole number.")
         
 
 # Run program        
-runner()
+netrunner()
