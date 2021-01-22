@@ -15,23 +15,27 @@ def list_the_list(the_list=[]):
     list_string: str
         A string listing the items found in 'the_list'.
     """
-    if (the_list != []):        # CASE: List is nonempty
+    # CASE: List is nonempty
+    if (the_list != []):
         list_string = ''
         list_length = len(the_list)
         for index, item in enumerate(the_list):
-            item = str(item)                        # Force to string (just in case).
-            if (index == 0):                        ## CASE: First item in the list.
+            # Force to string
+            item = str(item)
+
+            # CASE) First item in the list.
+            if (index == 0):
                 list_string += item
-            elif (index == list_length - 1):        ## CASE: Last item in the list.
+            # CASE) Last item in the list.
+            elif (index == list_length - 1):
                 list_string += ', and ' + item + '.'
-            else:                                   ## CASE: Between first and last item in the list.
+            # CASE) Between first and last item in the list.
+            else:
                 list_string += ', ' + item
-                
-    else:                       # CASE: List is empty
+    # CASE: List is empty
+    else:
         list_string = '(An empty list)'
-
     return list_string
-
 
 
 # COMMENTED SOME TESTS BELOW:

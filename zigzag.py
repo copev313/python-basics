@@ -1,28 +1,29 @@
 # zigzag.py
 
-# Print an infinite zigzag to the console.
+# Prints a continuous zigzag to the console.
 
-import time, sys
+import sys
+import time
 
-indent= 0                   # Number of spaces to indent.
+indent = 0                  # Number of spaces to indent.
 indent_increasing = True    # Whether indent is increasing or not.
 max_indent = 25             # Set level of zag
 
 try:
-    while True:     # Main loop
+    # Main Loop
+    while True:
         print(' ' * indent, end='')
         print('*****')
         time.sleep(0.1)         # Pause for 1/10 of a second.
-        
+
         if indent_increasing:
-            indent += 1         # Increase the number of spaces.
-            if (indent == max_indent):  # Change direction:
-                indent_increasing = False
+            indent += 1
+            if (indent == max_indent):
+                indent_increasing = False       # Change direction
         else:
             indent -= 1         # Decrease the number of spaces.
-            if (indent == 0):   # Change direction:
+            if (indent == 0):   # Change direction
                 indent_increasing = True
-                    
+
 except KeyboardInterrupt:
     sys.exit()
-                    

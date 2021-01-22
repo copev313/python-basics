@@ -11,18 +11,20 @@ def collatz(num):
     num : int
         The integer that starts the sequence.
     """
-    if (num == 1):                      # CASE: '1' -- end recursion
+    # CASE: '1' -- end recursion
+    if (num == 1):
         print("Sequence Complete!")
-        
-    else:                               # CASE: not '1'
-        if (num % 2 == 0):      ## CASE: EVEN -- print and return (num // 2)
+    # CASE: not '1'
+    else:
+        # CASE) Even -- print and return (num // 2)
+        if (num % 2 == 0):
             new_num = num // 2
-        else:                   ## CASE: ODD -- print and return (3 * number +1)
+        # CASE) Odd -- print and return (3 * number +1)
+        else:
             new_num = 3 * num + 1
-        
+
         print(new_num)
         return collatz(new_num)
-
 
 
 def netrunner():
@@ -33,14 +35,12 @@ def netrunner():
         # Accept user input
         integer = int(input("\nEnter an integer:  "))
         collatz(integer)
-        
     except ValueError:
-        print("Value Error! -- Please enter a positive or negative whole number.")
+        print("Enter a positive or negative whole number.")
         netrunner()
-        
     except RecursionError:
-        print("ZERO (booooo!)\nPlease enter a positive or negative whole number.")
-        
+        print("Enter a positive or negative whole number. Zero is neither.")
 
-# Run program        
+
+# Run program
 netrunner()
