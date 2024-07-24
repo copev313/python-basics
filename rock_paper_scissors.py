@@ -1,7 +1,3 @@
-# rock_paper_scissors.py
-
-# A nice game of rock, paper, scissor.
-
 import random
 import sys
 
@@ -9,53 +5,44 @@ import sys
 print("\n!!!  LET'S PLAY ROCK, PAPER, SCISSORS  !!!")
 
 # Track our stats
-wins, losses, ties = (0, 0, 0)
+wins, losses, ties = 0, 0, 0
+
+# Mapping of choices to their string representation
+CHOICES = {'r': 'ROCK', 'p': 'PAPER', 's': 'SCISSORS'}
+VALID_CHOICES = list(CHOICES.keys())
 
 # Game Loop
 while True:
     # Print current stats
-    stat_str = "\n# You've had {w} Wins, {l} Losses, and {t} Ties. #"
-    stat_str = stat_str.format(w=wins, l=losses, t=ties)
-    print(stat_str)
+    print(f"\n# You've had {wins} Wins, {losses} Losses, and {ties} Ties. #")
 
     # Player Input Loop
     while True:
-        print("Enter your move: (r)ock (p)aper (s)cissors  [or (q)uit]")
-        p_choice = input()
+        player_choice = input("Enter your move: (r)ock (p)aper (s)cissors [or (q)uit]: ").lower()
 
-        if (p_choice == 'q'):
-            sys.exit()              # Exit the program
-        elif (p_choice in ['r', 'p', 's']):
-            break                   # Leave player input loop
+        if player_choice == 'q':
+            sys.exit()  # Exit the program
+        elif player_choice in VALID_CHOICES:
+            break  # Leave player input loop
         else:
-            print("Please enter r, p, s, or q.")
+            print("Invalid input. Please enter 'r', 'p', 's', or 'q'.")
 
     # Display user's choice
-    choices_dict = {'r': 'ROCK', 'p': 'PAPER', 's': 'SCISSORS'}
-    players_move = choices_dict[p_choice]
-    print("\n{} versus... ".format(players_move), end='')
+    print(f"\n{CHOICES[player_choice]} versus...", end=' ')
 
     # Display computer's choice
-    choices_list = ['r', 'p', 's']
-    c_choice = random.choice(choices_list)
-    print(choices_dict[c_choice])
+    computer_choice = random.choice(VALID_CHOICES)
+    print(CHOICES[computer_choice])
 
-    # RESULT CASES:
-    tie_condition = (p_choice == c_choice)
-    player_win_cond = ((p_choice == 'r' and c_choice == 's') or
-                       (p_choice == 's' and c_choice == 'p') or
-                       (p_choice == 'p' and c_choice == 'r'))
-    player_lose_cond = ((p_choice == 'r' and c_choice == 'p') or
-                        (p_choice == 's' and c_choice == 'r') or
-                        (p_choice == 'p' and c_choice == 's'))
-
-    # Display the result and update stats
-    if (tie_condition):
+    # Determine the result
+    if player_choice == computer_choice:
         print("\n\t* Hey, we tied! *")
         ties += 1
-    elif (player_win_cond):
+    elif (player_choice == 'r' and computer_choice == 's') or \
+         (player_choice == 's' and computer_choice == 'p') or \
+         (player_choice == 'p' and computer_choice == 'r'):
         print("\n\t* You WIN! *")
         wins += 1
-    elif (player_lose_cond):
+    else:
         print("\n\t* You LOSE! *")
         losses += 1
